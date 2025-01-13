@@ -1,0 +1,13 @@
+{
+    "robot.language-server.python": "${workspaceFolder}/.venv-robot/Scripts/python.exe",
+    "robot.pythonpath": [
+        "${workspaceFolder}/libraries",
+        "${workspaceFolder}/resources"
+    ],
+    "robotcode.robot.args": [
+        "--outputdir", "${workspaceFolder}/results",
+        "--output", "xml/output.xml",
+        "--log", "logs/log.html",
+        "--report", "reports/report.html"
+    ]
+}

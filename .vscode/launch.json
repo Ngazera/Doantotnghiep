@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "robotframework-lsp",
+            "name": "Robot Framework Test",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "target": "${workspaceFolder}/tests/batch_A",
+            "terminal": "integrated",
+            "env": {},
+            "args": [
+                "--outputdir", "${workspaceFolder}/results",
+                "--output", "xml/output.xml",
+                "--log", "logs/log.html",
+                "--report", "reports/report.html",
+            ]
+        }
+    ]
+}
