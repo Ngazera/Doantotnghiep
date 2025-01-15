@@ -1,3 +1,18 @@
+*** Settings ***
+Documentation    Danh sách khoa
+Resource    ./common.robot
+
+Test Teardown    Close All Browsers
+
+*** Variables ***
+
+
+
+*** Keywords ***
+
+
+
+*** Test Cases ***
 case001
     [Documentation]    Kiểm tra nhập sai tên đăng nhập, nhập đúng Password
     Sleep    0s
