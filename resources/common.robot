@@ -27,7 +27,7 @@ login role hoi dong truong
     Create Webdriver    driver_name=Chrome
     Maximize Browser Window
     Go To    url=${app_url}
-    Input Text    locator=id_username    text=hoi_dong_truong
+    Input Text    locator=id_username    text=minh
     Input Text    locator=id_password    text=minh
     Click Button    locator=//button[text()="Login"]
     
