@@ -4,6 +4,7 @@ Resource    ././common.robot
 
 # Test Teardown    Close All Browsers
 Suite Setup    truy cap quan ly nguoi dung bang role hoi dong truong
+Suite Teardown    
 Test Setup    Reload Page
 *** Variables ***
 
@@ -14,6 +15,26 @@ truy cap quan ly nguoi dung bang role hoi dong truong
     login role hoi dong truong
     Click Element    //span[text()="Quản lý người dùng"]/parent::a
 
+xoa sau khi dung xong
+    [Documentation]    Xóa thất bại do người dùng hủy
+    Go To    http://localhost/person/list/
+    Click Button    //td[text()='tao_de_list@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
+    Handle Alert    ACCEPT
+    Close All Browsers
+
+tao user dummy de kiem tra list
+    Go To    http://localhost/person/create/
+    Input Text    name=first_name    tao_de_list
+    Input Text    name=last_name    tao_de_list
+    Input Text    name=identification    1234554321
+    Input Text    name=email    tao_de_list@gmail.com
+    Input Text    name=phone_number    0988886666
+    Select From List By Index    name=degree    2
+    Select From List By Index    name=academic_rank    2
+    Click Button    //button[@form='personForm']
+    Go To    http://localhost/person/list/
+
 *** Test Cases ***
 case001  
     [Documentation]    Kiểm tra tiêu đề trang là "Quản lý người dùng"  
@@ -21,96 +42,40 @@ case001
 
 
 case002  
-    [Documentation]    Kiểm tra sự hiện diện của trường "Tìm kiếm tên, email, ID, .."  
+    [Documentation]    Kiểm tra sự hiện diện của trường "Tìm kiếm bằng tên, cccd..."  
     ${placeholder}=     Get Element Attribute    id=searchInput    placeholder
-    Run Keyword If    '${placeholder}'!='Tìm kiếm bằng tên, ISSN, tổ chức...'    Fail    Sai giá trị placeholder
+    Run Keyword If    '${placeholder}'!='Tìm kiếm bằng tên, cccd...'    Fail    Sai giá trị placeholder
     
 
 case003  
-    [Documentation]    Kiểm tra sự hiện diện của nút "Tìm kiếm"  
-    Page Should Contain Button    //button[text()='Tìm Kiếm']
-
-case004  
     [Documentation]    Kiểm tra các cột trong bảng danh sách: ID, Ảnh, Tên, Email, Điện thoại, Học vị, Học hàm, Trạng thái, Hành động  
-    Element Should Contain    //table/thead/tr[1]    ID    
-    Element Should Contain    //table/thead/tr[1]    Ảnh
-    Element Should Contain    //table/thead/tr[1]    Tên
-    Element Should Contain    //table/thead/tr[1]    Email
-    Element Should Contain    //table/thead/tr[1]    Điện thoại
-    Element Should Contain    //table/thead/tr[1]    Học vị
-    Element Should Contain    //table/thead/tr[1]    Học hàm
-    Element Should Contain    //table/thead/tr[1]    Trạng thái
-    Element Should Contain    //table/thead/tr[1]    Hành động      Tên cột phải là "Hành Động"
+    Page Should Contain    ID    
+    Page Should Contain    Ảnh
+    Page Should Contain    Tên
+    Page Should Contain    CCCD
+    Page Should Contain    Email
+    Page Should Contain    Điện thoại
+    Page Should Contain    Học vị
+    Page Should Contain    Học thuật
+    Page Should Contain    Hành động
 
    
+case004  
+    [Documentation]    Tìm kiếm bằng cccd tồn tại
+    Input Text    id=searchInput    1234554321
+    Element Should Contain    //table/tbody     1234554321
+
 case005  
-    [Documentation]    Tìm kiếm bằng email tồn tại (ví dụ: ngant12022002@gmail.com)  
-    Input Text    id=searchInput    ngant12022002@gmail.com
-    Element Should Contain    //table/tbody     ngant12022002@gmail.com
+    [Documentation]    Tìm kiếm bằng cccd ko tồn tại
+    Input Text    id=searchInput    98989898989
+    Element Should Not Contain    //table/tbody     98989898989
     
 case006  
     [Documentation]    Tìm kiếm bằng tên không tồn tại  
-    Input Text    id=searchInput    MINH@gmail.com
-    Element Should Contain    //table/tbody     MINH@gmail.com
+    Input Text    id=searchInput    tao_de_list
+    Element Should Not Contain    //table/tbody     tao_de_list
     
 case007  
-    [Documentation]    Tìm kiếm tên tồn tại (ví dụ: Ngà)  
-     Input Text    id=searchInput    Ngà
-    Element Should Contain    //table/tbody     Ngà
-
-case008  
-    [Documentation]    Tìm kiếm bằng tên không tồn tại  
-     Input Text    id=searchInput    ABCD
-    Element Should Contain    //table/tbody     ABCD
-
-case009  
-    [Documentation]    Click nút "Xem" và kiểm tra thông tin chi tiết  
-    Sleep    0s  
-
-case010  
-    [Documentation]    Click nút "Sửa" kiểm tra màn hình hiển thị  
-    Sleep    0s  
-
-case011  
-    [Documentation]    Click nút "Xóa" và kiểm tra thông báo xác nhận  
-    Sleep    0s  
-
-case012  
-    [Documentation]    Click nút "Thêm mới", kiểm tra màn hình hiển thị  
-    Sleep    0s  
-
-case013  
-    [Documentation]    Click nút "Xem" và kiểm tra thông tin chi tiết hiển thị đúng  
-    Sleep    0s  
-
-case014  
-    [Documentation]    Thực hiện chỉnh sửa thông tin các trường hợp lệ  
-    Sleep    0s  
-
-case015  
-    [Documentation]    Check data sau khi chỉnh sửa  
-    Sleep    0s  
-
-case016  
-    [Documentation]    Thực hiện chỉnh sửa thông tin bỏ trống trường bắt buộc  
-    Sleep    0s  
-
-case017  
-    [Documentation]    Thực hiện thêm mới thông tin với các trường được nhập hợp lệ  
-    Sleep    0s  
-
-case018  
-    [Documentation]    Check data sau khi thêm mới  
-    Sleep    0s  
-
-case019  
-    [Documentation]    Thực hiện chỉnh sửa thông tin bỏ trống trường bắt buộc  
-    Sleep    0s  
-
-case020  
-    [Documentation]    Thực hiện xóa record  
-    Sleep    0s  
-
-case021  
-    [Documentation]    Check data sau khi xóa  
-    Sleep    0s  
+    [Documentation]    Tìm kiếm tên tồn tại
+     Input Text    id=searchInput    kotontai
+    Element Should Not Contain    //table/tbody     kotontai

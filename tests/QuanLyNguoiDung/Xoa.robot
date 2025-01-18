@@ -4,6 +4,7 @@ Resource    ././common.robot
 
 # Test Teardown    Close All Browsers
 Suite Setup    truy cap quan ly nguoi dung bang role hoi dong truong
+Test Setup    Sleep    1s
 *** Variables ***
 
 
@@ -29,17 +30,14 @@ tao user dummy de kiem tra xoa
 *** Test Cases ***
 case001
     [Documentation]    Xóa thất bại do người dùng hủy
-    Click Button    //td[text()='test_add_successfully_email@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Click Button    //td[text()='tao_de_xoa@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
     Handle Alert    DISMISS
 
 case002
-    [Documentation]    Kiểm tra nội dung message khi ấn xóa
-    Click Button    //td[text()='test_add_successfully_email@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
-
-
-case003
     [Documentation]    Xóa thành công
-    Click Button    //td[text()='test_add_successfully_email@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Click Button    //td[text()='tao_de_xoa@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
     Handle Alert    ACCEPT
 
     

@@ -31,6 +31,7 @@ tao cong trinh cho man hinh danh sach
 case001
     [Documentation]    Xóa thất bại do người dùng hủy
     Click Button    //td[text()='test_xoa_name@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
     Handle Alert    DISMISS
 
 case002
@@ -41,4 +42,5 @@ case002
 case003
     [Documentation]    Xóa thất bại do người dùng hủy
     Click Button    //td[text()='test_xoa_name@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
     Handle Alert    ACCEPT

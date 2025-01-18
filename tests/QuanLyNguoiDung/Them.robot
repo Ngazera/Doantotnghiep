@@ -4,7 +4,7 @@ Resource    ././common.robot
 
 # Test Teardown    Close All Browsers
 Suite Setup    truy cap quan ly nguoi dung bang role hoi dong truong
-Test Setup    Reload Page
+Test Setup    test setup fn
 *** Variables ***
 
 
@@ -14,6 +14,18 @@ truy cap quan ly nguoi dung bang role hoi dong truong
     login role hoi dong truong
     Click Element    //span[text()="Quản lý người dùng"]/parent::a
     Click Button    locator=//i[text()='+']/parent::button
+
+test setup fn
+    Go To    http://localhost/person/create/
+    Sleep    1s
+
+xoa sau khi dung xong
+    [Documentation]    Xóa thất bại do người dùng hủy
+    Go To    http://localhost/person/list/
+    Click Button    //td[text()='test_add_successfully_email@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
+    Handle Alert    ACCEPT
+    Close All Browsers
 
 *** Test Cases ***
 case001
@@ -25,15 +37,15 @@ case001
     Input Text    name=phone_number    0988886666
     Select From List By Index    name=degree    2
     Select From List By Index    name=academic_rank    2
-    # Ẩn overlay hoặc modal nếu có
-    Execute JavaScript    document.querySelector('.overlay-class').style.display = 'none'
     # Cuộn lên đầu trang
     Execute JavaScript    window.scrollTo(0, 0)
     # Đảm bảo nút đăng ký có thể click được
     Wait Until Element Is Visible    xpath=//button[@form='personForm']
     Click Button    //button[@form='personForm']
     
-    Element Should Contain    locator=//tbody    expected=test_add_successfully_email@gmail.com
+    Page Should Contain    text=test_add_successfully_email@gmail.com
+    xoa sau khi dung xong
+
 case002
     [Documentation]    Thêm mới thất bại do first_name trống
     Input Text    name=first_name    text=

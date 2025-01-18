@@ -19,6 +19,7 @@ truy cap quan ly nguoi dung bang role giang vien
 xoa sau khi dung xong
     [Documentation]    Xóa thất bại do người dùng hủy
     Click Button    //td[text()='test_cong_trinh_chi_tiet']/following-sibling::td[@class='actions']/button[text()='Xóa']
+    Sleep    1s
     Handle Alert    ACCEPT
 
 tao cong trinh cho man hinh chi tiet
