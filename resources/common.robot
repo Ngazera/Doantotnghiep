@@ -12,7 +12,7 @@ login role giao vien
     Maximize Browser Window
     Execute Javascript    document.body.style.zoom="60%"
     Go To    url=${app_url}
-    Input Text    locator=id_username    text=giao_vien
+    Input Text    locator=id_username    text=gv
     Input Text    locator=id_password    text=minh
     Click Button    locator=//button[text()="Login"]
     
@@ -21,7 +21,7 @@ login role truong khoa
     Maximize Browser Window
     Execute Javascript    document.body.style.zoom="60%"
     Go To    url=${app_url}
-    Input Text    locator=id_username    text=truong_khoa
+    Input Text    locator=id_username    text=khoa
     Input Text    locator=id_password    text=minh
     Click Button    locator=//button[text()="Login"]
     
@@ -31,7 +31,7 @@ login role hoi dong truong
     Maximize Browser Window
     Execute Javascript    document.body.style.zoom="60%"
     Go To    url=${app_url}
-    Input Text    locator=id_username    text=minh
+    Input Text    locator=id_username    text=admin
     Input Text    locator=id_password    text=minh
     Click Button    locator=//button[text()="Login"]
     
