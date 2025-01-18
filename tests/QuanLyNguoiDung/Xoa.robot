@@ -38,6 +38,8 @@ case002
 
 
 case003
-    [Documentation]    Xóa thất bại do người dùng hủy
+    [Documentation]    Xóa thành công
     Click Button    //td[text()='test_add_successfully_email@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
     Handle Alert    ACCEPT
+
+    

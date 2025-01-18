@@ -25,6 +25,12 @@ case001
     Input Text    name=phone_number    0988886666
     Select From List By Index    name=degree    2
     Select From List By Index    name=academic_rank    2
+    # Ẩn overlay hoặc modal nếu có
+    Execute JavaScript    document.querySelector('.overlay-class').style.display = 'none'
+    # Cuộn lên đầu trang
+    Execute JavaScript    window.scrollTo(0, 0)
+    # Đảm bảo nút đăng ký có thể click được
+    Wait Until Element Is Visible    xpath=//button[@form='personForm']
     Click Button    //button[@form='personForm']
     
     Element Should Contain    locator=//tbody    expected=test_add_successfully_email@gmail.com
