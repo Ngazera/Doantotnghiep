@@ -4,6 +4,7 @@ Resource    ././common.robot
 
 # Test Teardown    Close All Browsers
 Suite Setup    truy cap quan ly nguoi dung bang role hoi dong truong
+Suite Teardown    Close Browser
 *** Variables ***
 
 
@@ -29,13 +30,23 @@ tao user dummy de kiem tra chi tiet
     Input Text    name=phone_number    0988886666
     Select From List By Index    name=degree    2
     Select From List By Index    name=academic_rank    2
-    Click Button    //button[@form='personForm']
-    Go To    http://localhost/person/list/
+    Click Element    //button[@from='personForm']/i[text()='Lưu']
+#  Go To    http://localhost/person/list/
 
 *** Test Cases ***
 case001
     [Documentation]    Kiểm tra người dùng
+    Click Button     //td[text()='tao_de_xem_chi_tiet@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xem']
     ${ten}    Get Text    //label[text()="Tên"]/following-sibling::span
-    Run Keyword If    '${ten}'!='tao_de_xem_chi_tiet'    Fail    sai tên rồi
-    ${ho}    Get Text    //label[text()="Họ"]/following-sibling::span
-    if ho sai thi fail
+    Run Keyword If    '${ten}'!='tao_de_xem_chi_tiet'    Fail    Sai giá trị trường tên
+    ${ho}    Get Text    //label[text()='Họ']/following-sibling::span
+    Run Keyword If    '${ho}'== 'tao_de_xem_chi_tiet'    Fail    Sai giá trị trường Họ
+    ${Email}    Get Text    //label[text()="Emnail"]/following-sibling::span
+    Run Keyword If    '${ten}'!='tao_de_xem_chi_tiet@gmail.com'    Fail    Sai giá trị trường Email
+    ${Điện thoại}    Get Text    //label[text()='Điện thoại']/following-sibling::span
+    Run Keyword If    '${Điện thoại}'== '0988886666'    Fail    Sai giá trị trường Điện thoại
+   ${Học vị}    Get Text    //label[text()='Học vị']/following-sibling::span
+   Run Keyword If    '${Học vị}'!= 'de2'    Fail    Sai giá trị trường Học vị 
+   ${Học thuật}    Get Text    //label[text()='Học thuật']/following-sibling::span
+   Run Keyword If    '${Học thuật}'!= 'rank2'    Fail    Sai giá trị trường Học vị 
+   
