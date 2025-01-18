@@ -35,11 +35,6 @@ case001
     Handle Alert    DISMISS
 
 case002
-    [Documentation]    Kiểm tra nội dung message khi ấn xóa
-    Click Button    //td[text()='test_xoa_name@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
-
-
-case003
     [Documentation]    Xóa thất bại do người dùng hủy
     Click Button    //td[text()='test_xoa_name@gmail.com']/following-sibling::td[@class='actions']/button[text()='Xóa']
     Sleep    1s
